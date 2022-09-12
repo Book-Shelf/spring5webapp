@@ -37,20 +37,26 @@ public class BootStrapData implements CommandLineRunner {
 
         malcolm.getBooks().add(dad);
         dad.getAuthors().add(malcolm);
+        dad.setPublisher(cant);
+        cant.getBooks().add(dad);
 
         authorRepository.save(malcolm);
         bookRepository.save(dad);
+        publisherRepository.save(cant);
 
         Author rod = new Author("Rodrigo", "Marines");
         Book gog = new Book("Go Oranges Gradle", "753");
 
         rod.getBooks().add(gog);
         gog.getAuthors().add(rod);
+        gog.setPublisher(cant);
+        cant.getBooks().add(gog);
 
         authorRepository.save(rod);
         bookRepository.save(gog);
+        publisherRepository.save(cant);
 
         System.out.println("Bootstrap started!");
-        System.out.println("Numbers of books: " + bookRepository.count());
+        System.out.println("Numbers of books assign to a cant publisher: " + cant.getBooks().size());
     }
 }
